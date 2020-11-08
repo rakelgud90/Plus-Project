@@ -1,0 +1,252 @@
+.container {
+  font-family: "Quattrocento Sans", sans-serif;
+
+  margin-top: 10px;
+  margin-bottom: 10px;
+  max-width: 900px;
+}
+
+.current-weather {
+  border: 1px solid #a8edea 0%, #fed6e3 100%;
+  margin: 20px 0px;
+  padding: 20px;
+  max-width: 1000px;
+  border-radius: 20px;
+  background-image: linear-gradient(to left, #a8edea 0%, #fed6e3 100%);
+  box-shadow: 5px 5px 15px #f6f5f1;
+}
+
+.left-boxes {
+  margin: 10px 0px 10px 0px;
+}
+
+.right-boxes {
+  margin: 10px 0px 10px 0px;
+}
+
+.current-weather .card {
+  border-radius: 20px;
+}
+
+.current-weather .card-body {
+  padding: 15px 15px;
+}
+
+.current-weather .more-info {
+  font-size: 13px;
+}
+
+.search-bar .col-sm-1 {
+  padding-right: 0px;
+}
+
+#today-weather-icon {
+  font-size: 85px;
+}
+
+#today-icon {
+  padding: 0;
+}
+
+#current-date {
+  margin-bottom: 15px;
+}
+
+#toggle-button.btn-group.btn-group-toggle {
+  padding-left: 15px;
+}
+
+#farenheit {
+  opacity: 60%;
+}
+
+#farenheit:hover {
+  background-color: #f8d6e3;
+}
+#celcius {
+  opacity: 60%;
+}
+#celcius:hover {
+  background-color: #acecea;
+}
+
+#description {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+}
+
+#input-city-field {
+  margin: 0px;
+}
+
+.hourly-row {
+  padding: 20px 0px 0px 0px;
+}
+
+.today-degrees {
+  font-size: 40px;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+.search-bar {
+  border: 1px solid transparent 100%;
+  margin: 20px 0;
+  padding: 15px;
+  max-width: 1000px;
+  border-radius: 20px;
+
+  background-color: transparent;
+  box-shadow: 5px 5px 15px #f6f5f1;
+}
+
+.search-bar:hover {
+  border: 1px solid #f8d6e4 100%;
+  background-image: linear-gradient(to left, #a8edea 0%, #fed6e3 100%);
+  box-shadow: 5px 5px 15px #f6f5f1;
+  transition: all 200ms ease-in-out;
+  transition-delay: 1s;
+}
+
+.current-weather-hourly {
+  border: 1px solid #a8edea 0%, #fed6e3 100%;
+  margin: 20px 0px;
+  padding: 20px;
+  max-width: 1000px;
+  border-radius: 20px;
+
+  background-image: linear-gradient(to left, #a8edea 0%, #fed6e3 100%);
+  box-shadow: 5px 5px 15px #f6f5f1;
+}
+
+.current-weather-hourly h5 {
+  font-size: 18px;
+}
+
+.current-weather-hourly .card {
+  border-radius: 10px;
+  flex-wrap: wrap;
+  background-color: transparent;
+  border-radius: 20px;
+}
+
+.current-weather-hourly .card-body {
+  padding: 5px 20px;
+
+  text-align: center;
+}
+
+.current-weather-hourly .col-sm-3 {
+  padding: 0px 2px;
+}
+
+.hourly-forecast {
+  border: solid black;
+}
+.weather-forecast {
+  border: 1px solid #a8edea 0%, #fed6e3 100%;
+  margin: 0px 100px 0px 0px;
+  padding: 10px;
+  max-width: 1000px;
+  border-radius: 20px;
+
+  background-image: linear-gradient(to right, #a8edea 0%, #fed6e3 100%);
+  box-shadow: 5px 5px 15px #f6f5f1;
+}
+
+.forecast-day {
+  margin-left: 0px;
+  margin-bottom: 0px;
+  text-transform: uppercase;
+  font-size: 14px;
+  text-align: end;
+}
+
+.forecast-date {
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.weather-forecast .card {
+  margin: 10px 0px;
+  border-radius: 20px;
+  background-color: transparent;
+
+  align-items: space-around;
+}
+
+.weather-forecast .card-body {
+  padding: 5px 8px 5px 8px;
+}
+
+.weather-forecast .col-5 {
+  text-align: center;
+}
+
+.weather-forecast h6 {
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  font-size: 16px;
+}
+
+.forecast-temperature {
+  font-size: 20px;
+}
+.forecast-metric {
+  font-size: 20px;
+}
+
+.forecast-humidity {
+  font-size: 13px;
+}
+
+.fas.fa-tint {
+  font-size: 15px;
+}
+
+.current {
+  font-size: 38px;
+}
+
+.forecast {
+  font-size: 50px;
+  text-align: center;
+}
+
+.forecast-dates {
+  padding: 0px 10px 0px 0px;
+}
+.forecast-weather-info {
+  padding: 0;
+
+  text-align: center;
+}
+
+.forecast-weather-info p {
+  margin: 0 auto;
+}
+.forecast-icon {
+  padding: 0px;
+}
+
+.forecast-information {
+  padding: 0px 10px 0px 10px;
+}
+
+button#location-now {
+  border-radius: 10px;
+  border: none;
+  padding: 7px 6px 5px 6px;
+  background-color: transparent;
+}
+
+.hourly-time {
+  margin: 0;
+}

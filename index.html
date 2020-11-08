@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script
+      src="https://kit.fontawesome.com/c6b65dec1e.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quattrocento+Sans&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="src/style.css" />
+
+    <title>Weather Delight</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 left-boxes">
+          <div class="current-weather">
+            <div class="card">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <h1 class="card-title" id="current-city">Akureyri</h1>
+
+                    <span id="current-date">12:00 PM | Sat 10 Oct</span>
+                    <br />
+                    <br />
+                  </div>
+                  <div class="col-sm-6 degrees">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <span class="today-degrees">
+                          <span id="warmth-now"> 30</span>
+                          <span id="celcius-farenheit">°C</span>
+                        </span>
+                      </div>
+
+                      <div class="col-sm-6" id="today-icon">
+                        <span class="today-weather"
+                          ><i
+                            class="fas fa-cloud-sun"
+                            id="today-weather-icon"
+                          ></i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 more-info">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <span>Humidity: </span>
+                        <span id="current-humidity"> 50 </span>
+                        <span>%</span>
+                      </div>
+                      <div class="col-sm-6">
+                        <span>Windy: </span>
+                        <span id="current-wind">20</span>
+                      </div>
+                      <div class="col-sm-6">
+                        <span>Min Temp: </span>
+                        <span id="min-temp">20</span>
+                        <span id="celcius-farenheit">°C</span>
+                      </div>
+                      <div class="col-sm-6">
+                        <span>Max Temp: </span>
+                        <span id="max-temp">20</span>
+                        <span id="celcius-farenheit">°C</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6" id="description">
+                    <span id="current-weather-description"> Partly Sunny</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="search-bar">
+            <div class="row align-items-center justify-content-center">
+              <div class="col-sm-3">
+                <div
+                  class="btn-group btn-group-toggle"
+                  data-toggle="buttons"
+                  id="toggle-button"
+                >
+                  <label class="btn btn-secondary active" id="celcius">
+                    <input type="radio" name="options" id="option1" checked />
+                    C°
+                  </label>
+                  <label class="btn btn-secondary" id="farenheit">
+                    <input type="radio" name="options" id="option2" /> F°
+                  </label>
+                </div>
+              </div>
+              <div class="col-sm-1">
+                <div>
+                  <button type="button" id="location-now">
+                    <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="col-sm-8">
+                <form class="form" id="submit-button">
+                  <div class="form-group" id="input-city-field">
+                    <input
+                      type="search"
+                      id="city"
+                      class="form-control"
+                      placeholder="Enter City Name"
+                    />
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="current-weather-hourly">
+            <div class="col-sm-12">
+              <div class="row">
+                <div class="col-sm-3" class="hourly-forecast">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="hourly-time">2:00 PM</h5>
+                      <br />
+
+                      <span>
+                        <i class="fas fa-cloud-rain current"></i>
+                      </span>
+                      <div class="row">
+                        <div class="col-sm-6 hourly-row">
+                          <span>15°C</span>
+                        </div>
+                        <div class="col-sm-6 hourly-row">
+                          <span class="weather-description-current">
+                            <i class="fas fa-tint"></i>
+                            20%
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-3" class="hourly-forecast">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="hourly-time">2:00 PM</h5>
+                      <br />
+
+                      <span>
+                        <i class="fas fa-cloud-rain current"></i>
+                      </span>
+                      <div class="row">
+                        <div class="col-sm-6 hourly-row">
+                          <span>15°C</span>
+                        </div>
+                        <div class="col-sm-6 hourly-row">
+                          <span class="weather-description-current">
+                            <i class="fas fa-tint"></i>
+                            20%
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-3" class="hourly-forecast">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="hourly-time">2:00 PM</h5>
+                      <br />
+
+                      <span>
+                        <i class="fas fa-cloud-rain current"></i>
+                      </span>
+                      <div class="row">
+                        <div class="col-sm-6 hourly-row">
+                          <span>15°C</span>
+                        </div>
+                        <div class="col-sm-6 hourly-row">
+                          <span class="weather-description-current">
+                            <i class="fas fa-tint"></i>
+                            20%
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-3" class="hourly-forecast">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="hourly-time">2:00 PM</h5>
+                      <br />
+
+                      <span>
+                        <i class="fas fa-cloud-rain current"></i>
+                      </span>
+                      <div class="row">
+                        <div class="col-sm-6 hourly-row">
+                          <span>15°C</span>
+                        </div>
+                        <div class="col-sm-6 hourly-row">
+                          <span class="weather-description-current">
+                            <i class="fas fa-tint"></i>
+                            20%
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4 right-boxes">
+          <div class="weather-forecast">
+            <div class="card">
+              <div class="card-body">
+                <div class="row forecast-information">
+                  <div class="col-sm-6 forecast-dates">
+                    <h6 class="forecast-day">Fri</h6>
+                  </div>
+
+                  <div class="col-sm-6 forecast-dates">
+                    <h6 class="forecast-date">6 Nov</h6>
+                  </div>
+                </div>
+                <div
+                  class="row align-items-center justify-content-center forecast-information"
+                >
+                  <div class="col-sm-6 forecast-weather-info">
+                    <span class="forecast-temperature">15</span>
+                    <span class="forecast-metric">°C</span>
+                    <br />
+                    <span>
+                      <i class="fas fa-tint" aria-hidden="true"></i>
+                      <span class="forecast-humidity"> 50 </span>
+                      <span class="forecast-humidity">%</span>
+                    </span>
+                  </div>
+                  <div class="col-sm-6 forecast-icon">
+                    <i class="fas fa-cloud-sun forecast"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <div class="row forecast-information">
+                  <div class="col-sm-6 forecast-dates">
+                    <h6 class="forecast-day">Fri</h6>
+                  </div>
+
+                  <div class="col-sm-6 forecast-dates">
+                    <h6 class="forecast-date">6 Nov</h6>
+                  </div>
+                </div>
+                <div
+                  class="row align-items-center justify-content-center forecast-information"
+                >
+                  <div class="col-sm-6 forecast-weather-info">
+                    <span class="forecast-temperature">15</span>
+                    <span class="forecast-metric">°C</span>
+                    <br />
+                    <span>
+                      <i class="fas fa-tint" aria-hidden="true"></i>
+                      <span class="forecast-humidity"> 50 </span>
+                      <span class="forecast-humidity">%</span>
+                    </span>
+                  </div>
+                  <div class="col-sm-6 forecast-icon">
+                    <i class="fas fa-cloud-sun forecast"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <div class="row forecast-information">
+                  <div class="col-sm-6 forecast-dates">
+                    <h6 class="forecast-day">Fri</h6>
+                  </div>
+
+                  <div class="col-sm-6 forecast-dates">
+                    <h6 class="forecast-date">6 Nov</h6>
+                  </div>
+                </div>
+                <div
+                  class="row align-items-center justify-content-center forecast-information"
+                >
+                  <div class="col-sm-6 forecast-weather-info">
+                    <span class="forecast-temperature">15</span>
+                    <span class="forecast-metric">°C</span>
+                    <br />
+                    <span>
+                      <i class="fas fa-tint" aria-hidden="true"></i>
+                      <span class="forecast-humidity"> 50 </span>
+                      <span class="forecast-humidity">%</span>
+                    </span>
+                  </div>
+                  <div class="col-sm-6 forecast-icon">
+                    <i class="fas fa-cloud-sun forecast"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <div class="row forecast-information">
+                  <div class="col-sm-6 forecast-dates">
+                    <h6 class="forecast-day">Fri</h6>
+                  </div>
+
+                  <div class="col-sm-6 forecast-dates">
+                    <h6 class="forecast-date">6 Nov</h6>
+                  </div>
+                </div>
+                <div
+                  class="row align-items-center justify-content-center forecast-information"
+                >
+                  <div class="col-sm-6 forecast-weather-info">
+                    <span class="forecast-temperature">15</span>
+                    <span class="forecast-metric">°C</span>
+                    <br />
+                    <span>
+                      <i class="fas fa-tint" aria-hidden="true"></i>
+                      <span class="forecast-humidity"> 50 </span>
+                      <span class="forecast-humidity">%</span>
+                    </span>
+                  </div>
+                  <div class="col-sm-6 forecast-icon">
+                    <i class="fas fa-cloud-sun forecast"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <div class="row forecast-information">
+                  <div class="col-sm-6 forecast-dates">
+                    <h6 class="forecast-day">Fri</h6>
+                  </div>
+
+                  <div class="col-sm-6 forecast-dates">
+                    <h6 class="forecast-date">6 Nov</h6>
+                  </div>
+                </div>
+                <div
+                  class="row align-items-center justify-content-center forecast-information"
+                >
+                  <div class="col-sm-6 forecast-weather-info">
+                    <span class="forecast-temperature">15</span>
+                    <span class="forecast-metric">°C</span>
+                    <br />
+                    <span>
+                      <i class="fas fa-tint" aria-hidden="true"></i>
+                      <span class="forecast-humidity"> 50 </span>
+                      <span class="forecast-humidity">%</span>
+                    </span>
+                  </div>
+                  <div class="col-sm-6 forecast-icon">
+                    <i class="fas fa-cloud-sun forecast"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="src/script.js"></script>
+  </body>
+</html>
