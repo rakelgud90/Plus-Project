@@ -1,9 +1,9 @@
 .container {
   font-family: "Quattrocento Sans", sans-serif;
-
   margin-top: 10px;
   margin-bottom: 10px;
   max-width: 900px;
+  max-height: fit-content;
 }
 
 .current-weather {
@@ -16,12 +16,13 @@
   box-shadow: 5px 5px 15px #f6f5f1;
 }
 
-.left-boxes {
+.left-side {
   margin: 10px 0px 10px 0px;
 }
 
-.right-boxes {
+.right-side {
   margin: 10px 0px 10px 0px;
+  padding-left: 0px;
 }
 
 .current-weather .card {
@@ -197,9 +198,6 @@
 }
 
 .forecast-temperature {
-  font-size: 20px;
-}
-.forecast-metric {
   font-size: 20px;
 }
 

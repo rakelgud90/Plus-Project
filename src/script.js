@@ -1,13 +1,11 @@
 //   <button class="btn btn-outline-dark">Search</button>
 //DATE
 
-function nowDate() {
-  let currentDate = new Date();
+function nowDate(timestamp) {
+  let currentDate = new Date(timestamp);
 
   let year = currentDate.getFullYear();
   let date = currentDate.getDate();
-  let hours = currentDate.getHours();
-  let minutes = currentDate.getMinutes();
 
   let months = [
     "Jan",
@@ -27,8 +25,20 @@ function nowDate() {
   let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   let day = days[currentDate.getDay()];
 
-  let formattedDate = `${day} ${date} ${month} ${year} | ${hours} : ${minutes}`;
-  return formattedDate;
+  return `${day} ${date} ${month} ${year} | ${forecastHourlyHours(timestamp)}`;
+}
+function forecastHourlyHours(timestamp) {
+  let currentDate = new Date(timestamp);
+  let hours = currentDate.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = currentDate.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
+  return `${hours}:${minutes}`;
 }
 
 //Place
@@ -38,32 +48,6 @@ function nowDate() {
 //let cityName = response.data.name;
 //let input = document.querySelector("#city");
 //Celcius
-
-function chooseCelsius(event) {
-  event.preventDefault();
-  warmthNow.innerHTML = "20";
-  celcius.innerHTML = "°C";
-
-  return celsiusTemp;
-}
-function chooseFahrenheit(event) {
-  event.preventDefault();
-  warmthNow.innerHTML = "86";
-  farenheit.innerHTML = "°F";
-
-  return fahrenheitTemp;
-}
-
-let warmthNow = document.querySelector("#warmth-now");
-let celsius = document.querySelector("#celcius-farenheit");
-let celsiusTemp = document.querySelector("#celcius-farenheit");
-let fahrenheit = document.querySelector("#celcius-farenheit");
-let fahrenheitTemp = document.querySelector("#celcius-farenheit");
-let toCelsius = document.querySelector("#celcius");
-let toFahrenheit = document.querySelector("#farenheit");
-
-toCelsius.addEventListener("click", chooseCelsius);
-toFahrenheit.addEventListener("click", chooseFahrenheit);
 
 function showWeather(response) {
   document.querySelector("#current-city").innerHTML = response.data.name;
@@ -86,14 +70,57 @@ function showWeather(response) {
   document.querySelector("#current-wind").innerHTML = `${Math.round(
     response.data.wind.speed
   )} km/h`;
+
+  document.querySelector("#current-date").innerHTML = nowDate(
+    response.data.dt * 1000
+  );
+}
+
+function showForecastHourly(response) {
+  let forecastHourlyElement = document.querySelector("div#hourly");
+  forecastHourlyElement.innerHTML = null;
+  let forecastHourly = null;
+
+  for (let index = 0; index < 4; index++) {
+    forecastHourly = response.data.list[index];
+    forecastHourlyElement.innerHTML += `<div class="col-sm-3" class="hourly-forecast">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="hourly-time">${forecastHourlyHours(
+            forecastHourly.dt * 1000
+          )} PM</h5>
+          <br />
+
+          <span>
+            <i class="fas fa-cloud-rain current"></i>
+          </span>
+          <div class="row">
+            <div class="col-sm-6 hourly-row">
+              <span>${Math.round(forecastHourly.main.temp)}</span>
+              <span class="temperature-unit">°C</span>
+            </div>
+            <div class="col-sm-6 hourly-row">
+              <span class="weather-description-current">
+                <i class="fas fa-tint"></i>
+                ${forecastHourly.main.humidity}%
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+  }
 }
 
 function submitCity(city) {
   let units = "metric";
   let apiKey = "086aa1bfd05c11e55d8cff81f8be5a37";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
-
   axios.get(apiUrl).then(showWeather);
+
+  let apiUrlHourly = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrlHourly).then(showForecastHourly);
 }
 
 function handleSubmitCity(event) {
@@ -117,9 +144,6 @@ function getCurrentLocation(event) {
   navigator.geolocation.getCurrentPosition(showLocation);
 }
 
-let currentDay = nowDate();
-let span = document.querySelector("span#current-date");
-span.innerHTML = currentDay;
 let searchButton = document.querySelector("#submit-button");
 searchButton.addEventListener("submit", handleSubmitCity);
 
@@ -127,4 +151,3 @@ let currentLocationButton = document.querySelector("#location-now");
 currentLocationButton.addEventListener("click", getCurrentLocation);
 
 submitCity("Reykjavik");
-showWeather(response);

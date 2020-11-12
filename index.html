@@ -26,7 +26,7 @@
   <body>
     <div class="container">
       <div class="row">
-        <div class="col-sm-8 left-boxes">
+        <div class="col-sm-8 left-side">
           <div class="current-weather">
             <div class="card">
               <div class="card-body">
@@ -34,7 +34,7 @@
                   <div class="col-sm-6">
                     <h1 class="card-title" id="current-city">Akureyri</h1>
 
-                    <span id="current-date">12:00 PM | Sat 10 Oct</span>
+                    <span id="current-date"></span>
                     <br />
                     <br />
                   </div>
@@ -43,7 +43,7 @@
                       <div class="col-sm-6">
                         <span class="today-degrees">
                           <span id="warmth-now"> 30</span>
-                          <span id="celcius-farenheit">°C</span>
+                          <span id="temperature-unit">°C</span>
                         </span>
                       </div>
 
@@ -71,12 +71,12 @@
                       <div class="col-sm-6">
                         <span>Min Temp: </span>
                         <span id="min-temp">20</span>
-                        <span id="celcius-farenheit">°C</span>
+                        <span class="temperature-unit">°C</span>
                       </div>
                       <div class="col-sm-6">
                         <span>Max Temp: </span>
                         <span id="max-temp">20</span>
-                        <span id="celcius-farenheit">°C</span>
+                        <span class="temperature-unit">°C</span>
                       </div>
                     </div>
                   </div>
@@ -95,11 +95,14 @@
                   data-toggle="buttons"
                   id="toggle-button"
                 >
-                  <label class="btn btn-secondary active" id="celcius">
+                  <label
+                    class="btn btn-secondary active"
+                    id="celsius-converter"
+                  >
                     <input type="radio" name="options" id="option1" checked />
                     C°
                   </label>
-                  <label class="btn btn-secondary" id="farenheit">
+                  <label class="btn btn-secondary" id="fahrenheit-converter">
                     <input type="radio" name="options" id="option2" /> F°
                   </label>
                 </div>
@@ -127,105 +130,12 @@
           </div>
           <div class="current-weather-hourly">
             <div class="col-sm-12">
-              <div class="row">
-                <div class="col-sm-3" class="hourly-forecast">
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="hourly-time">2:00 PM</h5>
-                      <br />
-
-                      <span>
-                        <i class="fas fa-cloud-rain current"></i>
-                      </span>
-                      <div class="row">
-                        <div class="col-sm-6 hourly-row">
-                          <span>15°C</span>
-                        </div>
-                        <div class="col-sm-6 hourly-row">
-                          <span class="weather-description-current">
-                            <i class="fas fa-tint"></i>
-                            20%
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-3" class="hourly-forecast">
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="hourly-time">2:00 PM</h5>
-                      <br />
-
-                      <span>
-                        <i class="fas fa-cloud-rain current"></i>
-                      </span>
-                      <div class="row">
-                        <div class="col-sm-6 hourly-row">
-                          <span>15°C</span>
-                        </div>
-                        <div class="col-sm-6 hourly-row">
-                          <span class="weather-description-current">
-                            <i class="fas fa-tint"></i>
-                            20%
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-3" class="hourly-forecast">
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="hourly-time">2:00 PM</h5>
-                      <br />
-
-                      <span>
-                        <i class="fas fa-cloud-rain current"></i>
-                      </span>
-                      <div class="row">
-                        <div class="col-sm-6 hourly-row">
-                          <span>15°C</span>
-                        </div>
-                        <div class="col-sm-6 hourly-row">
-                          <span class="weather-description-current">
-                            <i class="fas fa-tint"></i>
-                            20%
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-3" class="hourly-forecast">
-                  <div class="card">
-                    <div class="card-body">
-                      <h5 class="hourly-time">2:00 PM</h5>
-                      <br />
-
-                      <span>
-                        <i class="fas fa-cloud-rain current"></i>
-                      </span>
-                      <div class="row">
-                        <div class="col-sm-6 hourly-row">
-                          <span>15°C</span>
-                        </div>
-                        <div class="col-sm-6 hourly-row">
-                          <span class="weather-description-current">
-                            <i class="fas fa-tint"></i>
-                            20%
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <div class="row" id="hourly"></div>
             </div>
           </div>
         </div>
 
-        <div class="col-sm-4 right-boxes">
+        <div class="col-sm-4 right-side">
           <div class="weather-forecast">
             <div class="card">
               <div class="card-body">
@@ -243,7 +153,7 @@
                 >
                   <div class="col-sm-6 forecast-weather-info">
                     <span class="forecast-temperature">15</span>
-                    <span class="forecast-metric">°C</span>
+                    <span class="temperature-unit">°C</span>
                     <br />
                     <span>
                       <i class="fas fa-tint" aria-hidden="true"></i>
@@ -273,7 +183,7 @@
                 >
                   <div class="col-sm-6 forecast-weather-info">
                     <span class="forecast-temperature">15</span>
-                    <span class="forecast-metric">°C</span>
+                    <span class="temperature-unit">°C</span>
                     <br />
                     <span>
                       <i class="fas fa-tint" aria-hidden="true"></i>
@@ -303,7 +213,7 @@
                 >
                   <div class="col-sm-6 forecast-weather-info">
                     <span class="forecast-temperature">15</span>
-                    <span class="forecast-metric">°C</span>
+                    <span class="temperature-unit">°C</span>
                     <br />
                     <span>
                       <i class="fas fa-tint" aria-hidden="true"></i>
@@ -333,7 +243,7 @@
                 >
                   <div class="col-sm-6 forecast-weather-info">
                     <span class="forecast-temperature">15</span>
-                    <span class="forecast-metric">°C</span>
+                    <span class="temperature-unit">°C</span>
                     <br />
                     <span>
                       <i class="fas fa-tint" aria-hidden="true"></i>
@@ -363,7 +273,7 @@
                 >
                   <div class="col-sm-6 forecast-weather-info">
                     <span class="forecast-temperature">15</span>
-                    <span class="forecast-metric">°C</span>
+                    <span class="temperature-unit">°C</span>
                     <br />
                     <span>
                       <i class="fas fa-tint" aria-hidden="true"></i>
