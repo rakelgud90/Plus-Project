@@ -41,6 +41,10 @@ function forecastHourlyHours(timestamp) {
   return `${hours}:${minutes}`;
 }
 
+let currentDay = nowDate();
+let span = document.querySelector("span#current-date");
+span.innerHTML = currentDay;
+
 //Place
 
 //let form = document.querySelector("form");
@@ -74,6 +78,7 @@ function showWeather(response) {
   document.querySelector("#current-date").innerHTML = nowDate(
     response.data.dt * 1000
   );
+  celsiusTemperature = response.data.main.temp;
 }
 
 function showForecastHourly(response) {
@@ -83,6 +88,7 @@ function showForecastHourly(response) {
 
   for (let index = 0; index < 4; index++) {
     forecastHourly = response.data.list[index];
+
     forecastHourlyElement.innerHTML += `<div class="col-sm-3" class="hourly-forecast">
       <div class="card">
         <div class="card-body">
@@ -144,10 +150,42 @@ function getCurrentLocation(event) {
   navigator.geolocation.getCurrentPosition(showLocation);
 }
 
+function showFahrenheitTemperature(event) {
+  event.preventDefault();
+
+  let temperatureF = document.querySelector("#warmth-now");
+  celsiusConverter.classList.remove("active");
+  fahrenheitConverter.classList.add("active");
+
+  let fahrenheiTemperature = (celsiusTemperature * 9) / 5 + 32;
+  temperatureF.innerHTML = Math.round(fahrenheiTemperature);
+
+  let temperatureUnit = document.querySelector("#temperature-unit");
+  temperatureUnit.innerHTML = `°F`;
+}
+
+function showCelsiusTemperature(event) {
+  event.preventDefault();
+  celsiusConverter.classList.add("active");
+  fahrenheitConverter.classList.remove("active");
+  let temperatureC = document.querySelector("#warmth-now");
+  temperatureC.innerHTML = Math.round(celsiusTemperature);
+  let temperatureUnit = document.querySelector("#temperature-unit");
+  temperatureUnit.innerHTML = `°C`;
+}
+
+let celsiusTemperature = null;
+
 let searchButton = document.querySelector("#submit-button");
 searchButton.addEventListener("submit", handleSubmitCity);
 
 let currentLocationButton = document.querySelector("#location-now");
 currentLocationButton.addEventListener("click", getCurrentLocation);
+
+let fahrenheitConverter = document.querySelector("#fahrenheit-converter");
+fahrenheitConverter.addEventListener("click", showFahrenheitTemperature);
+
+let celsiusConverter = document.querySelector("#celsius-converter");
+celsiusConverter.addEventListener("click", showCelsiusTemperature);
 
 submitCity("Reykjavik");

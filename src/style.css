@@ -97,6 +97,21 @@
   transform: translate(-50%, -50%);
 }
 
+.btn-secondary {
+  color: black;
+  background-color: white;
+  border-color: white;
+}
+
+.btn-secondary:hover {
+  background: green;
+}
+
+.btn-secondary:not(:disabled):not(.disabled).active {
+  background: red;
+  border: red;
+}
+
 .search-bar {
   border: 1px solid transparent 100%;
   margin: 20px 0;
