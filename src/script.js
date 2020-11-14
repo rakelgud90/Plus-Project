@@ -79,6 +79,16 @@ function showWeather(response) {
     response.data.dt * 1000
   );
   celsiusTemperature = response.data.main.temp;
+
+  document
+    .querySelector("#today-icon")
+    .setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    );
+  document
+    .querySelector("#today-icon")
+    .setAttribute("alt", response.data.weather[0].description);
 }
 
 function showForecastHourly(response) {
@@ -94,23 +104,25 @@ function showForecastHourly(response) {
         <div class="card-body">
           <h5 class="hourly-time">${forecastHourlyHours(
             forecastHourly.dt * 1000
-          )} PM</h5>
-          <br />
-
-          <span>
-            <i class="fas fa-cloud-rain current"></i>
-          </span>
-          <div class="row">
-            <div class="col-sm-6 hourly-row">
+          )} </h5>
+          
+  
+            <img
+        src="http://openweathermap.org/img/wn/${
+          forecastHourly.weather[0].icon
+        }@2x.png"  width="80" height="80"
+      />
+           <div> 
+   <span class="hourly-row-1">
               <span>${Math.round(forecastHourly.main.temp)}</span>
-              <span class="temperature-unit">°C</span>
-            </div>
-            <div class="col-sm-6 hourly-row">
+              <span class="temperature-unit">°C </span>
+        </span>
+            <span class="hourly-row-2">
               <span class="weather-description-current">
                 <i class="fas fa-tint"></i>
                 ${forecastHourly.main.humidity}%
               </span>
-            </div>
+</span>
           </div>
         </div>
       </div>

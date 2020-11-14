@@ -27,6 +27,7 @@
 
 .current-weather .card {
   border-radius: 20px;
+  border: transparent;
 }
 
 .current-weather .card-body {
@@ -34,19 +35,11 @@
 }
 
 .current-weather .more-info {
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .search-bar .col-sm-1 {
   padding-right: 0px;
-}
-
-#today-weather-icon {
-  font-size: 85px;
-}
-
-#today-icon {
-  padding: 0;
 }
 
 #current-date {
@@ -76,10 +69,19 @@
   justify-content: center;
   align-items: center;
   text-transform: uppercase;
+  font-size: x-large;
 }
 
 #input-city-field {
   margin: 0px;
+}
+
+.today-1 {
+  padding: 0px;
+}
+
+.today-2 {
+  padding: 0px;
 }
 
 .hourly-row {
@@ -89,10 +91,10 @@
 .today-degrees {
   font-size: 40px;
   display: flex;
-  justify-content: center;
+  justify-content: right;
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 80%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
 }
@@ -125,7 +127,7 @@
 
 .search-bar:hover {
   border: 1px solid #f8d6e4 100%;
-  background-image: linear-gradient(to left, #a8edea 0%, #fed6e3 100%);
+
   box-shadow: 5px 5px 15px #f6f5f1;
   transition: all 200ms ease-in-out;
   transition-delay: 1s;
@@ -147,20 +149,29 @@
 }
 
 .current-weather-hourly .card {
-  border-radius: 10px;
+  border: transparent;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1), -4px -4px 10px rgba(0, 0, 0, 0.1);
   flex-wrap: wrap;
   background-color: transparent;
   border-radius: 20px;
 }
 
 .current-weather-hourly .card-body {
-  padding: 5px 20px;
+  padding: 5px 10px;
 
   text-align: center;
 }
 
+.hourly-row-1 {
+  padding-right: 7px;
+}
+
+.hourly-row-2 {
+  padding-left: 7px;
+}
+
 .current-weather-hourly .col-sm-3 {
-  padding: 0px 2px;
+  padding: 0px 5px;
 }
 
 .hourly-forecast {
@@ -194,7 +205,8 @@
   margin: 10px 0px;
   border-radius: 20px;
   background-color: transparent;
-
+  border: transparent;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1), -4px -4px 10px rgba(0, 0, 0, 0.1);
   align-items: space-around;
 }
 
@@ -255,9 +267,10 @@
 
 button#location-now {
   border-radius: 10px;
-  border: none;
+
   padding: 7px 6px 5px 6px;
   background-color: transparent;
+  border-width: 1px;
 }
 
 .hourly-time {
