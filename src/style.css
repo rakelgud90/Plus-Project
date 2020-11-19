@@ -8,7 +8,7 @@
 
 .current-weather {
   border: 1px solid #a8edea 0%, #fed6e3 100%;
-  margin: 20px 0px;
+  margin: 0px 0px 20px 0px;
   padding: 20px;
   max-width: 1000px;
   border-radius: 20px;
@@ -202,7 +202,7 @@
 }
 
 .weather-forecast .card {
-  margin: 10px 0px;
+  margin: 9px 0px;
   border-radius: 20px;
   background-color: transparent;
   border: transparent;
@@ -267,10 +267,15 @@
 
 button#location-now {
   border-radius: 10px;
-
+  border: transparent;
   padding: 7px 6px 5px 6px;
   background-color: transparent;
   border-width: 1px;
+}
+
+#locationbutton:hover {
+  color: #a8ecea;
+  transition: color 0.15s ease-in-out;
 }
 
 .hourly-time {
