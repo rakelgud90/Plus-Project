@@ -32,8 +32,7 @@
               <div class="card-body">
                 <div class="row">
                   <div class="col-md-6">
-                    <h1 class="card-title" id="current-city">Akureyri</h1>
-
+                    <h1 class="card-title" id="current-city"></h1>
                     <span id="current-date"></span>
                   </div>
                   <div class="col-md-6 degrees">
@@ -58,27 +57,26 @@
                   </div>
                   <div class="col-md-6 more-info">
                     <div class="row">
-                      <div class="col-sm-6">
+                      <div class="col-md-6">
                         <span>Humidity: </span>
-                        <span id="current-humidity"> 50 </span>
-                        <span>%</span>
+                        <span id="current-humidity"></span>%
                       </div>
-                      <div class="col-sm-6">
-                        <span>Windy: </span>
-                        <span id="current-wind">20</span>
+                      <div class="col-md-6">
+                        <span>Wind: </span>
+                        <span id="current-wind"></span>
                       </div>
-                      <div class="col-sm-6">
+                      <div class="col-md-6">
                         <span>Min Temp: </span>
-                        <span id="min-temp">20</span>
+                        <span id="min-temp"></span>
                       </div>
-                      <div class="col-sm-6">
+                      <div class="col-md-6">
                         <span>Max Temp: </span>
-                        <span id="max-temp">20</span>
+                        <span id="max-temp"></span>
                       </div>
                     </div>
                   </div>
                   <div class="col-md-6" id="description">
-                    <span id="current-weather-description"> Partly Sunny</span>
+                    <span id="current-weather-description"></span>
                   </div>
                 </div>
               </div>
@@ -97,14 +95,14 @@
                     id="celsius-converter"
                   >
                     <input type="radio" name="options" id="option1" checked />
-                    C°
+                    °C
                   </label>
                   <label class="btn btn-secondary" id="fahrenheit-converter">
-                    <input type="radio" name="options" id="option2" /> F°
+                    <input type="radio" name="options" id="option2" /> °F
                   </label>
                 </div>
               </div>
-              <div class="col-sm-1">
+              <div class="col-sm-1" id="search-bar-current-location">
                 <div>
                   <button type="button" id="location-now">
                     <i
@@ -135,8 +133,6 @@
             </div>
           </div>
         </div>
-      
-
         <div class="col-sm-4 right-side">
           <div class="weather-forecast" id="daily"></div>
         </div>

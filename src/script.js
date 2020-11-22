@@ -26,6 +26,7 @@ function nowDate(timestamp) {
     timestamp
   )}`;
 }
+
 function forecastHourlyHours(timestamp) {
   let currentDate = new Date(timestamp);
   let hours = currentDate.getHours();
@@ -44,17 +45,11 @@ let currentDay = nowDate();
 let span = document.querySelector("span#current-date");
 span.innerHTML = currentDay;
 
-//Place
-
-//let form = document.querySelector("form");
-//form.addEventListener("submit", submitCity);
-//let cityName = response.data.name;
-//let input = document.querySelector("#city");
-//Celcius
-
 function showWeather(response) {
   maxTempCelcius = response.data.main.temp_max;
   minTempCelcius = response.data.main.temp_min;
+  celsiusTemperature = response.data.main.temp;
+  windSpeed = response.data.wind.speed;
 
   document.querySelector("#current-city").innerHTML = response.data.name;
   document.querySelector("#warmth-now").innerHTML = `${Math.round(
@@ -81,8 +76,6 @@ function showWeather(response) {
   document.querySelector("#current-date").innerHTML = nowDate(
     response.data.dt * 1000
   );
-  celsiusTemperature = response.data.main.temp;
-  windSpeed = response.data.wind.speed;
 
   document
     .querySelector("#today-icon")
@@ -137,6 +130,8 @@ function getCurrentLocation(event) {
   navigator.geolocation.getCurrentPosition(showLocation);
 }
 
+//Hourly Forecast API
+
 function showForecastHourly(response) {
   let forecastHourlyElement = document.querySelector("div#hourly");
   forecastHourlyElement.innerHTML = null;
@@ -148,9 +143,7 @@ function showForecastHourly(response) {
     forecastHourlyElement.innerHTML += `<div class="col-sm-3" class="hourly-forecast">
       <div class="card">
         <div class="card-body">
-          <h5 class="hourly-time">${forecastHourlyHours(
-            forecastHourly.dt * 1000
-          )} </h5>
+          <h5>${forecastHourlyHours(forecastHourly.dt * 1000)} </h5>
           
   
             <img
@@ -179,6 +172,8 @@ function showForecastHourly(response) {
   `;
   }
 }
+
+//Daily Forecast API
 
 function formatForecastDay(timestamp) {
   let date = new Date(timestamp);
@@ -216,7 +211,7 @@ function showDailyForecast(response) {
   dailyForecastElement.innerHTML = null;
   let forecast = null;
 
-  for (let index = 1; index < 6; index++) {
+  for (let index = 1; index < 7; index++) {
     forecast = response.data.daily[index];
     dailyForecastElement.innerHTML += `<div class="card">
 <div class="card-body">
@@ -226,7 +221,7 @@ function showDailyForecast(response) {
 </div>
 
 <div class="col-sm-6 forecast-dates">
-<h6 class="forecast-date">${formatForecastDate(forecast.dt * 1000)}</h6>
+<h6>${formatForecastDate(forecast.dt * 1000)}</h6>
 </div>
 </div>
 <div
@@ -248,7 +243,7 @@ ${forecast.humidity}%
  <img
         src="http://openweathermap.org/img/wn/${
           forecast.weather[0].icon
-        }@2x.png"  width="60" height="60"
+        }@2x.png"  width="65" height="65"
       />
 </div>
 </div>
@@ -257,6 +252,8 @@ ${forecast.humidity}%
 `;
   }
 }
+
+//Fahrenheit Converter
 
 function showFahrenheitTemperature(event) {
   event.preventDefault();
@@ -269,7 +266,7 @@ function showFahrenheitTemperature(event) {
 
   let windSpeedMiles = document.querySelector("#current-wind");
   let miles = windSpeed * 0.62137119223733;
-  windSpeedMiles.innerHTML = `${Math.round(miles)} m/h`;
+  windSpeedMiles.innerHTML = `${Math.round(miles)} mph`;
 
   let maxTempFahrenheit = (maxTempCelcius * 9) / 5 + 32;
 
@@ -304,6 +301,8 @@ function showFahrenheitTemperature(event) {
     item.innerHTML = `°F`;
   });
 }
+
+//Celcius Converter
 
 function showCelsiusTemperature(event) {
   event.preventDefault();
