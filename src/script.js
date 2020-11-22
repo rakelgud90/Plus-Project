@@ -81,9 +81,10 @@ span.innerHTML = currentDay;
 //Show the weather
 
 function showWeather(response) {
+  celsiusTemperature = response.data.main.temp;
   maxTempCelcius = response.data.main.temp_max;
   minTempCelcius = response.data.main.temp_min;
-  celsiusTemperature = response.data.main.temp;
+
   windSpeed = response.data.wind.speed;
 
   document.querySelector("#current-city").innerHTML = response.data.name;
@@ -93,6 +94,7 @@ function showWeather(response) {
   document.querySelector("#warmth-now").innerHTML = `${Math.round(
     response.data.main.temp
   )}°C`;
+
   document.querySelector("span#current-weather-description").innerHTML =
     response.data.weather[0].description;
 
@@ -168,15 +170,13 @@ function showForecastHourly(response) {
   forecastHourlyElement.innerHTML = null;
   let forecastHourly = null;
 
-  for (let index = 0; index < 8; index++) {
+  for (let index = 1; index < 9; index++) {
     forecastHourly = response.data.hourly[index];
 
-    forecastHourlyElement.innerHTML += `<div class="col-sm-3" class="hourly-forecast">
+    forecastHourlyElement.innerHTML += `<div class="col-sm-3">
       <div class="card">
         <div class="card-body">
           <h5>${forecastHourlyHours(forecastHourly.dt * 1000)} </h5>
-          
-  
             <img
          src="http://openweathermap.org/img/wn/${
            forecastHourly.weather[0].icon
@@ -214,41 +214,39 @@ function showDailyForecast(response) {
   for (let index = 1; index < 7; index++) {
     forecast = response.data.daily[index];
     dailyForecastElement.innerHTML += `<div class="card">
-<div class="card-body">
-<div class="row forecast-information">
-<div class="col-sm-6 forecast-dates">
-<h6 class="forecast-day">${formatForecastDay(forecast.dt * 1000)}</h6>
-</div>
+        <div class="card-body">
+          <div class="row forecast-information">
+            <div class="col-sm-6 forecast-dates">
+              <h6 class="forecast-day">${formatForecastDay(
+                forecast.dt * 1000
+              )}</h6>
+          </div>
 
-<div class="col-sm-6 forecast-dates">
-<h6>${formatForecastDate(forecast.dt * 1000)}</h6>
-</div>
-</div>
-<div
-class="row align-items-center justify-content-center forecast-information"
->
-<div class="col-sm-6 forecast-weather-info">
-
-<span class="temperature-warmth">${Math.round(forecast.temp.day)}</span>
-<span class="temperature-warmth-unit">°C</span>
-<br />
-<span>
-<i class="fas fa-tint" aria-hidden="true"></i>
-
-${forecast.humidity}%
-
-</span>
-</div>
-<div class="col-sm-6 forecast-icon">
- <img
-        src="http://openweathermap.org/img/wn/${
-          forecast.weather[0].icon
-        }@2x.png"  width="65" height="65"
-      />
-</div>
-</div>
-</div>
-</div>
+            <div class="col-sm-6 forecast-dates">
+              <h6>${formatForecastDate(forecast.dt * 1000)}</h6>
+            </div>
+          </div>
+          <div class="row align-items-center justify-content-center forecast-information">
+            <div class="col-sm-6 forecast-weather-info">
+              <span class="temperature-warmth">${Math.round(
+                forecast.temp.day
+              )}</span>
+              <span class="temperature-warmth-unit">°C</span>
+              <br />
+              <span><i class="fas fa-tint" aria-hidden="true"></i> ${
+                forecast.humidity
+              }% </span>
+            </div>
+            <div class="col-sm-6 forecast-icon">
+              <img
+                      src="http://openweathermap.org/img/wn/${
+                        forecast.weather[0].icon
+                      }@2x.png"  width="65" height="65"
+                    />
+              </div>
+            </div>
+          </div>
+        </div>
 `;
   }
 }
@@ -257,6 +255,7 @@ ${forecast.humidity}%
 
 function showFahrenheitTemperature(event) {
   event.preventDefault();
+
   celsiusConverter.classList.remove("active");
   fahrenheitConverter.classList.add("active");
 
@@ -268,23 +267,20 @@ function showFahrenheitTemperature(event) {
   let miles = windSpeed * 0.62137119223733;
   windSpeedMiles.innerHTML = `${Math.round(miles)} mph`;
 
-  let maxTempFahrenheit = (maxTempCelcius * 9) / 5 + 32;
-
-  let minTempFahrenheit = (minTempCelcius * 9) / 5 + 32;
-
   document.querySelector("#min-temp").innerHTML = `${Math.round(
-    maxTempFahrenheit
+    (minTempCelcius * 9) / 5 + 32
   )}°F`;
 
   document.querySelector("#max-temp").innerHTML = `${Math.round(
-    maxTempFahrenheit
+    (maxTempCelcius * 9) / 5 + 32
   )}°F`;
 
   let temperatureWarmth = document.querySelectorAll(".temperature-warmth");
+  temperatureWarmth.innerHTML = null;
 
   temperatureWarmth.forEach(function (item) {
     let currentTemp = item.innerHTML;
-    item.innerHTML = Math.round((celsiusTemperature * 9) / 5 + 32);
+    item.innerHTML = Math.round((currentTemp * 9) / 5 + 32);
   });
 
   let temperatureWarmthUnit = document.querySelectorAll(
@@ -301,6 +297,7 @@ function showFahrenheitTemperature(event) {
 
 function showCelsiusTemperature(event) {
   event.preventDefault();
+
   celsiusConverter.classList.add("active");
   fahrenheitConverter.classList.remove("active");
 
@@ -322,7 +319,7 @@ function showCelsiusTemperature(event) {
 
   temperatureWarmth.forEach(function (item) {
     let currentTemp = item.innerHTML;
-    item.innerHTML = Math.round(celsiusTemperature);
+    item.innerHTML = Math.round(((currentTemp - 32) * 5) / 9);
   });
 
   let temperatureWarmthUnit = document.querySelectorAll(
@@ -336,8 +333,8 @@ function showCelsiusTemperature(event) {
 }
 
 let celsiusTemperature = null;
-
 let windSpeed = null;
+let forecast = [];
 
 let searchButton = document.querySelector("#submit-button");
 searchButton.addEventListener("submit", handleSubmitCity);

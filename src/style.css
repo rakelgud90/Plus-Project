@@ -2,11 +2,11 @@
   font-family: "Quattrocento Sans", sans-serif;
   margin-top: 10px;
   margin-bottom: 10px;
-  max-width: 900px;
+  max-width: 950px;
   max-height: fit-content;
 }
 .left-side {
-  margin: 20px 0px 10px 0px;
+  margin: 25px 0px 10px 0px;
 }
 
 .right-side {
@@ -21,9 +21,9 @@
   margin: 0px 0px 20px 0px;
   padding: 20px;
   max-width: 1000px;
-  border-radius: 20px;
+  border-radius: 15px;
   background-image: linear-gradient(to left, #a8edea 0%, #fed6e3 100%);
-  box-shadow: 5px 5px 15px #f6f5f1;
+  box-shadow: 5px 5px 10px #f6f5f1;
 }
 
 .current-weather .card {
@@ -66,10 +66,10 @@
   margin: 20px 0;
   padding: 15px;
   max-width: 1000px;
-  border-radius: 20px;
+  border-radius: 15px;
   background-color: #fdfdfd;
-  box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.05),
-    -4px -4px 15px rgba(0, 0, 0, 0.05);
+  box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.04),
+    -4px -4px 15px rgba(0, 0, 0, 0.04);
 }
 .btn-secondary {
   color: #48484a;
@@ -92,17 +92,17 @@
 .current-weather-hourly {
   border: 1px solid #a8edea 0%, #fed6e3 100%;
   margin: 10px 0px;
-  padding: 10px 10px;
+  padding: 10px;
   max-width: 1000px;
-  border-radius: 20px;
+  border-radius: 15px;
   background-image: linear-gradient(to left, #a8edea 0%, #fed6e3 100%);
-  box-shadow: 5px 5px 15px #f6f5f1;
+  box-shadow: 5px 5px 10px #f6f5f1;
 }
 
 .current-weather-hourly .card {
   border: transparent;
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.05),
-    -4px -4px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.04),
+    -2px -2px 10px rgba(0, 0, 0, 0.04);
   flex-wrap: wrap;
   background-color: transparent;
   border-radius: 20px;
@@ -144,11 +144,11 @@
 .weather-forecast .card {
   margin: 10px 0px;
   padding: 0;
-  border-radius: 20px;
+  border-radius: 15px;
 
   background-image: linear-gradient(to right, #a8edea 0%, #fed6e3 100%);
   border: transparent;
-  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.05), -4px -4px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.04), -2px -2px 8px rgba(0, 0, 0, 0.04);
   align-items: space-around;
 }
 
