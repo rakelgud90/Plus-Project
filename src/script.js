@@ -109,7 +109,7 @@ function showWeather(response) {
   )}°C`;
   document.querySelector("#current-wind").innerHTML = `${Math.round(
     response.data.wind.speed
-  )} km/h`;
+  )} m/s`;
   document
     .querySelector("#today-icon")
     .setAttribute(
@@ -167,6 +167,7 @@ function getCurrentLocation(event) {
 
 function showForecastHourly(response) {
   let forecastHourlyElement = document.querySelector("div#hourly");
+
   forecastHourlyElement.innerHTML = null;
   let forecastHourly = null;
 
@@ -306,7 +307,7 @@ function showCelsiusTemperature(event) {
 
   let windSpeedKm = document.querySelector("#current-wind");
 
-  windSpeedKm.innerHTML = `${Math.round(windSpeed)} km/h`;
+  windSpeedKm.innerHTML = `${Math.round(windSpeed)} m/s`;
 
   document.querySelector("#max-temp").innerHTML = `${Math.round(
     maxTempCelcius
@@ -334,7 +335,6 @@ function showCelsiusTemperature(event) {
 
 let celsiusTemperature = null;
 let windSpeed = null;
-let forecast = [];
 
 let searchButton = document.querySelector("#submit-button");
 searchButton.addEventListener("submit", handleSubmitCity);
