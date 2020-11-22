@@ -22,7 +22,9 @@ function nowDate(timestamp) {
   let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   let day = days[currentDate.getDay()];
 
-  return `${day} ${date} ${month} ${year} | ${forecastHourlyHours(timestamp)}`;
+  return `${day} ${date} ${month} ${year} | Last Updated: ${forecastHourlyHours(
+    timestamp
+  )}`;
 }
 function forecastHourlyHours(timestamp) {
   let currentDate = new Date(timestamp);
@@ -91,6 +93,13 @@ function showWeather(response) {
   document
     .querySelector("#today-icon")
     .setAttribute("alt", response.data.weather[0].description);
+
+  let apiKey = "086aa1bfd05c11e55d8cff81f8be5a37";
+  let units = "metric";
+  let latitude = response.data.coord.lat;
+  let longitude = response.data.coord.lon;
+  let apiUrlDaily = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrlDaily).then(showDailyForecast);
 }
 
 function submitCity(city) {
@@ -171,6 +180,84 @@ function showForecastHourly(response) {
   }
 }
 
+function formatForecastDay(timestamp) {
+  let date = new Date(timestamp);
+  let fWeekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let fWeekDay = fWeekDays[date.getDay()];
+
+  return `${fWeekDay}`;
+}
+
+function formatForecastDate(timestamp) {
+  let date = new Date(timestamp);
+  let fDate = date.getDate();
+
+  let fMonths = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  let fMonth = fMonths[date.getMonth()];
+
+  return `${fDate} ${fMonth}`;
+}
+
+function showDailyForecast(response) {
+  let dailyForecastElement = document.querySelector("#daily");
+  dailyForecastElement.innerHTML = null;
+  let forecast = null;
+
+  for (let index = 1; index < 6; index++) {
+    forecast = response.data.daily[index];
+    dailyForecastElement.innerHTML += `<div class="card">
+<div class="card-body">
+<div class="row forecast-information">
+<div class="col-sm-6 forecast-dates">
+<h6 class="forecast-day">${formatForecastDay(forecast.dt * 1000)}</h6>
+</div>
+
+<div class="col-sm-6 forecast-dates">
+<h6 class="forecast-date">${formatForecastDate(forecast.dt * 1000)}</h6>
+</div>
+</div>
+<div
+class="row align-items-center justify-content-center forecast-information"
+>
+<div class="col-sm-6 forecast-weather-info">
+
+<span class="temperature-warmth">${Math.round(forecast.temp.day)}</span>
+<span class="temperature-warmth-unit">°C</span>
+<br />
+<span>
+<i class="fas fa-tint" aria-hidden="true"></i>
+
+${forecast.humidity}%
+
+</span>
+</div>
+<div class="col-sm-6 forecast-icon">
+ <img
+        src="http://openweathermap.org/img/wn/${
+          forecast.weather[0].icon
+        }@2x.png"  width="60" height="60"
+      />
+</div>
+</div>
+</div>
+</div>
+`;
+  }
+}
+
 function showFahrenheitTemperature(event) {
   event.preventDefault();
   celsiusConverter.classList.remove("active");
@@ -203,7 +290,7 @@ function showFahrenheitTemperature(event) {
     let currentTemp = item.innerHTML;
 
     // convert to Fahrenheit
-    item.innerHTML = Math.round((currentTemp * 9) / 5 + 32);
+    item.innerHTML = Math.round((celsiusTemperature * 9) / 5 + 32);
   });
   let temperatureWarmthUnit = document.querySelectorAll(
     ".temperature-warmth-unit"
@@ -244,7 +331,7 @@ function showCelsiusTemperature(event) {
     let currentTemp = item.innerHTML;
 
     // convert to Fahrenheit
-    item.innerHTML = Math.round(((currentTemp - 32) * 5) / 9);
+    item.innerHTML = Math.round(((celsiusTemperature - 32) * 5) / 9);
   });
 
   let temperatureWarmthUnit = document.querySelectorAll(
