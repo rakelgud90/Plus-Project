@@ -6,7 +6,7 @@
   max-height: fit-content;
 }
 .left-side {
-  margin: 60px 0px 10px 0px;
+  margin: 20px 0px 10px 0px;
 }
 
 .right-side {
@@ -33,7 +33,7 @@
 }
 
 .current-weather .card-body {
-  padding: 15px 15px;
+  padding: 5px;
 }
 
 .current-weather .more-info {
@@ -68,7 +68,8 @@
   max-width: 1000px;
   border-radius: 20px;
   background-color: #fdfdfd;
-  box-shadow: 5px 5px 15px #f6f5f1;
+  box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.05),
+    -4px -4px 15px rgba(0, 0, 0, 0.05);
 }
 .btn-secondary {
   color: #48484a;
@@ -90,8 +91,8 @@
 
 .current-weather-hourly {
   border: 1px solid #a8edea 0%, #fed6e3 100%;
-  margin: 20px 0px;
-  padding: 20px 10px;
+  margin: 10px 0px;
+  padding: 10px 10px;
   max-width: 1000px;
   border-radius: 20px;
   background-image: linear-gradient(to left, #a8edea 0%, #fed6e3 100%);
@@ -100,19 +101,20 @@
 
 .current-weather-hourly .card {
   border: transparent;
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1), -4px -4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.05),
+    -4px -4px 10px rgba(0, 0, 0, 0.05);
   flex-wrap: wrap;
   background-color: transparent;
   border-radius: 20px;
+  margin: 3px;
 }
 
 .current-weather-hourly .col-sm-3 {
-  padding: 0px 5px;
+  padding: 0px 5px 5px 5px;
 }
 
 .current-weather-hourly .card-body {
   padding: 5px 10px;
-
   text-align: center;
 }
 
@@ -137,17 +139,16 @@
   padding: 10px;
   max-width: 1000px;
   border-radius: 20px;
-  background-image: linear-gradient(to right, #a8edea 0%, #fed6e3 100%);
-  box-shadow: 5px 5px 15px #f6f5f1;
 }
 
 .weather-forecast .card {
-  margin: 6px 0px;
+  margin: 10px 0px;
   padding: 0;
   border-radius: 20px;
-  background-color: transparent;
+
+  background-image: linear-gradient(to right, #a8edea 0%, #fed6e3 100%);
   border: transparent;
-  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1), -4px -4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.05), -4px -4px 8px rgba(0, 0, 0, 0.05);
   align-items: space-around;
 }
 

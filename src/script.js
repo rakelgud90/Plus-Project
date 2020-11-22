@@ -168,7 +168,7 @@ function showForecastHourly(response) {
   forecastHourlyElement.innerHTML = null;
   let forecastHourly = null;
 
-  for (let index = 0; index < 4; index++) {
+  for (let index = 0; index < 8; index++) {
     forecastHourly = response.data.hourly[index];
 
     forecastHourlyElement.innerHTML += `<div class="col-sm-3" class="hourly-forecast">
