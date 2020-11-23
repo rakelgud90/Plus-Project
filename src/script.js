@@ -292,6 +292,8 @@ function showFahrenheitTemperature(event) {
     let currentTemp = item.innerHTML;
     item.innerHTML = `°F`;
   });
+  celsiusConverter.addEventListener("click", showCelsiusTemperature);
+  fahrenheitConverter.removeEventListener("click", showFahrenheitTemperature);
 }
 
 //Celcius Converter
@@ -331,6 +333,8 @@ function showCelsiusTemperature(event) {
     let currentTemp = item.innerHTML;
     item.innerHTML = `°C`;
   });
+  celsiusConverter.removeEventListener("click", showCelsiusTemperature);
+  fahrenheitConverter.addEventListener("click", showFahrenheitTemperature);
 }
 
 let celsiusTemperature = null;
